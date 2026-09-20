@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,10 +19,24 @@ jobs:
           java-version: '17'
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+        run: |
+          mkdir -p $HOME/android-sdk/cmdline-tools
+          cd $HOME/android-sdk/cmdline-tools
+          wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+          unzip -q commandlinetools-linux-*.zip
+          mv cmdline-tools latest
+          echo "$HOME/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
 
-      - name: Grant execute to gradlew
-        run: chmod +x gradlew || true
+      - name: Accept licenses & install platform
+        run: |
+          yes | sdkmanager --licenses > /dev/null || true
+          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+
+      - name: Setup Gradle
+        run: |
+          wget -q https://services.gradle.org/distributions/gradle-8.2-bin.zip
+          unzip -q gradle-8.2-bin.zip
+          echo "$PWD/gradle-8.2/bin" >> $GITHUB_PATH
 
       - name: Build Debug APK
         run: gradle assembleDebug --no-daemon

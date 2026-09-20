@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Maya</string>
+    <string name="accessibility_desc">Maya को installed apps खोलने और UI control करने की अनुमति देता है।</string>
+</resources>

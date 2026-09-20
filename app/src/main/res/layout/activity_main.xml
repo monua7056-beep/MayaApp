@@ -3,35 +3,94 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:background="#0E0E1A">
 
-    <EditText
-        android:id="@+id/commandInput"
+    <!-- Top Bar -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Command लिखो (e.g. Instagram खोलो)"/>
+        android:orientation="horizontal"
+        android:padding="14dp"
+        android:gravity="center_vertical"
+        android:background="#1A1A2E">
 
-    <Button
-        android:id="@+id/runBtn"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="🌸 Maya"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/menuBtn"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:text="⋮"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:gravity="center"
+            android:background="?android:attr/selectableItemBackgroundBorderless"/>
+    </LinearLayout>
+
+    <!-- API Key Status -->
+    <TextView
+        android:id="@+id/apiStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Run"/>
+        android:padding="10dp"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:text=""
+        android:background="#141426"/>
 
-    <Button
-        android:id="@+id/accessBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Accessibility Settings खोलो"/>
-
+    <!-- Output area -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:padding="12dp">
+
         <TextView
             android:id="@+id/output"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#DDDDDD"
             android:textSize="13sp"
-            android:fontFamily="monospace"/>
+            android:fontFamily="monospace"
+            android:text=""/>
     </ScrollView>
+
+    <!-- Input Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="#1A1A2E">
+
+        <EditText
+            android:id="@+id/commandInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="कुछ बोलो... (जैसे Instagram खोलो)"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#666666"
+            android:background="#0E0E1A"
+            android:padding="12dp"
+            android:inputType="text"/>
+
+        <Button
+            android:id="@+id/runBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="▶"
+            android:textSize="18sp"
+            android:backgroundTint="#6C5CE7"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
 </LinearLayout>
